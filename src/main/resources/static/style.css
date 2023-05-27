@@ -148,10 +148,11 @@ main {
 		"picture3 text3"
 		"picture4 text4"
 		"picture5 text5";
-	grid-template-columns: 70vh 70vw;
+	grid-template-columns: 50vh calc(70vw - 50vh);
 	grid-gap: 15vw;
-	grid-template-rows: 70vh 70vh 70vh 70vh 70vh;
+	grid-template-rows: 50vh 50vh 50vh 50vh 50vh;
 }
+
 
 #imgContain {
 	background-color: #ffffff;

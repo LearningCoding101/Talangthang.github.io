@@ -18,4 +18,5 @@ public class ProjectApplication {
 	public Resource index(){
 		return new ClassPathResource("static/index.html");
 	}
+
 }

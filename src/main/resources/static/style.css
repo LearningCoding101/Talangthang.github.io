@@ -230,4 +230,11 @@ main {
   color: #fff;
   cursor: pointer;
 }
-
+#text{
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+	justify-content: center;
+	align-item: center;
+	gap: 10%;
+}

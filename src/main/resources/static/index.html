@@ -100,34 +100,44 @@
 		<div id="line"><br></div>
 	</div>
 	<main id="top"></main>
-	<div id="feedback"><form class="form" onsubmit="event.preventDefault(); sendFeedbackToBackend();">
+<div id="feedback">
+	<form class="form" onsubmit="event.preventDefault(); sendFeedbackToBackend();">
 		<div class="title">Feedback</div>
-		<input type="text" id="emails"placeholder="Your email" class="input">
+		<input type="text" id="emails" placeholder="Your email" class="input">
 		<textarea id="feedbacks" placeholder="Your feedback"></textarea>
+		<button type="submit">Submit</button>
+	</form>
+</div>
 
-	<button>Submit</button></form></div>
 <script>
-        function sendFeedbackToBackend() {
-            var email = document.getElementById('emails').value;
-            var feedback = document.getElementById('feedbacks').value;
+    function sendFeedbackToBackend() {
+        var email = document.getElementById('emails').value;
+        var feedback = document.getElementById('feedbacks').value;
 
-            var data = {
-                email: email,
-                feedback: feedback
-            };
+        var data = {
+            email: email,
+            feedback: feedback
+        };
 
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', '/feedback', true);
-            xhr.setRequestHeader('Content-Type', 'application/json');
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    var response = JSON.parse(xhr.responseText);
-                    // Handle the response from the backend
-                }
-            };
-            xhr.send(JSON.stringify(data));
-        }
-    </script>
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/feedback', true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                var response = JSON.parse(xhr.responseText);
+                // Handle the response from the backend
+            }
+        };
+        resetForm();
+        xhr.send(JSON.stringify(data));
+    }
+
+    function resetForm() {
+        document.getElementById('emails').value = '';
+        document.getElementById('feedbacks').value = '';
+    }
+</script>
+
 <script>
 		var grid = document.querySelector("#top");
 		const urls = [

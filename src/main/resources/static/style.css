@@ -148,7 +148,7 @@ main {
 		"picture3 text3"
 		"picture4 text4"
 		"picture5 text5";
-	grid-template-columns: 50vh calc(70vw - 50vh);
+	grid-template-columns: 50vh calc(100vw - 50vh);
 	grid-gap: 15vw;
 	grid-template-rows: 50vh 50vh 50vh 50vh 50vh;
 }
@@ -156,13 +156,10 @@ main {
 
 #imgContain {
 	background-color: #ffffff;
-	border: 2px solid #0b2447;
-	border-top: none;
-	border-bottom: none;
+	box-shadow: 0 0 5px 8px white inset;
 	font-size: 16px;
 	background: transparent;
 	outline: none;
-	box-shadow: 7px 7px 0px 4px #0b2447, 0px 0px 0px 4px rgba(11, 36, 71, 0.4);
 	transition: all 0.5s;
 }
 #feedback{
@@ -230,11 +227,20 @@ main {
   color: #fff;
   cursor: pointer;
 }
-#text{
+#text {
 	display: flex;
 	flex-direction: column;
 	flex-grow: 1;
 	justify-content: center;
 	align-item: center;
+	background: #f9d949;
+	opacity: 50%;
+	margin-right: auto;
 	gap: 10%;
+	margin-top: 5%;
+	margin-bottom: 5%;
+}
+#please{
+	width:50%;
+	margin-left: 8%;
 }

@@ -18,5 +18,8 @@ public class ProjectApplication {
 	public Resource index(){
 		return new ClassPathResource("static/index.html");
 	}
-
+	@RequestMapping("/360demo")
+	public Resource fullView(){
+		return new ClassPathResource("static/test.html");
+	}
 }

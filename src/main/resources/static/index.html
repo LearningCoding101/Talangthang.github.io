@@ -101,43 +101,54 @@
 	</div>
 	<main id="top"></main>
 <div id="feedback">
-	<form class="form" onsubmit="event.preventDefault(); sendFeedbackToBackend();">
+	<form class="form" style="position: relative" onsubmit="event.preventDefault(); sendFeedbackToBackend();">
 		<div class="title">Feedback</div>
 		<input type="text" id="emails" placeholder="Your email" class="input">
 		<textarea id="feedbacks" placeholder="Your feedback"></textarea>
-		<button type="submit">Submit</button>
+
+		<button>Click me</button>
 	</form>
+	<button id="button2" onClick="display()" class="button2">
+		Click me
+	</button>
 </div>
-
 <script>
-    function sendFeedbackToBackend() {
-        var email = document.getElementById('emails').value;
-        var feedback = document.getElementById('feedbacks').value;
-
-        var data = {
-            email: email,
-            feedback: feedback
-        };
-
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', '/feedback', true);
-        xhr.setRequestHeader('Content-Type', 'application/json');
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                var response = JSON.parse(xhr.responseText);
-                // Handle the response from the backend
-            }
-        };
-        resetForm();
-        xhr.send(JSON.stringify(data));
-    }
-
-    function resetForm() {
-        document.getElementById('emails').value = '';
-        document.getElementById('feedbacks').value = '';
-    }
-</script>
-
+		function display() {
+			const displayElement = document.getElementById('button2');
+			displayElement.style.left = "40%";
+			const currentURL = window.location.href;
+			fetch(currentURL + '360demo')
+				.then(response => response.text()) // Get the response as text
+				.then(html => {
+					// Set the fetched HTML as the innerHTML of the display element
+					displayElement.innerHTML = html;
+				})
+				.catch(error => {
+					// Handle any errors that occur during the fetch
+					console.error('Error:', error);
+				});
+		}
+	</script>
+<script>
+		function sendFeedbackToBackend() {
+			var email = document.getElementById('emails').value;
+			var feedback = document.getElementById('feedbacks').value;
+			var data = {
+				email: email,
+				feedback: feedback
+			};
+			var xhr = new XMLHttpRequest();
+			xhr.open('POST', '/feedback', true);
+			xhr.setRequestHeader('Content-Type', 'application/json');
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState === 4 && xhr.status === 200) {
+					var response = JSON.parse(xhr.responseText);
+					// Handle the response from the backend
+				}
+			};
+			xhr.send(JSON.stringify(data));
+		}
+	</script>
 <script>
 		var grid = document.querySelector("#top");
 		const content = ["Ngoài sự phát triển công nghiệp và tốc độ tăng trưởng kinh tế đứng đầu cả nước, Đồng Nai cũng nổi tiếng với các địa điểm vui chơi hấp dẫn và di tích lịch sử lâu đời như Văn miếu Trấn Biên tại Biên Hòa, Đồng Nai, nơi bảo tồn và gìn giữ các giá trị văn hóa, giáo dục của vùng đất Biên Hòa. Điều này chứng tỏ Đồng Nai có tiềm năng phát triển du lịch đáng chú ý.", "Bắt đầu tiếp đón những đoàn khách đầu tiên vào năm 2019, trải qua vài năm hoạt động nhưng khu du lịch sinh thái Sơn Tiên Đồng Nai chưa có một từng có một ngày vắng khách. Ngoài vị trí lý tưởng, các cụm trò chơi dưới nước theo tiêu chuẩn Canada, du khách còn thoả thích hoà mình vào những ngọn sóng kì diệu cao đến 4m với bãi biển nhân tạo lớn nhất Đông Nam Á", "Khu du lịch thác Đá Hàn, nằm cách TP HCM khoảng 70 km, là một điểm đến mới lạ cho các bạn trẻ muốn khám phá. Với vẻ đẹp hoang sơ và hùng vĩ của thiên nhiên, thác nước tuyệt đẹp còn kết hợp với vườn trái cây phong phú. Đối với những người yêu thích đi phượt, địa điểm này hứa hẹn là một điểm đến lý tưởng để dã ngoại và cắm trại vào những ngày cuối tuần.", "Vị trí địa lý độc đáo của suối Mơ, khu du lịch tại Trà Cổ, Tân Phú, Đồng Nai, cách Sài Gòn khoảng 100km, là một trong những ưu điểm nổi bật. Nơi đây thu hút du khách bởi không gian xanh mát, yên tĩnh và trong lành, là điểm đến lý tưởng để thư giãn. Mặc dù được tạo ra nhân tạo, suối Mơ mang vẻ đẹp tự nhiên tuyệt đẹp như món quà từ thiên nhiên.", "Vinpearl Land là một công viên giải trí nổi tiếng với nhiều trò chơi thú vị như trượt nước, bể bơi, đường trượt tuyết nhân tạo, vòng xoay, khu vui chơi trong nhà và rất nhiều trò chơi khác."];
@@ -181,5 +192,4 @@
 		}
 	</script>
 
-
-	</body>
+</body>

@@ -1,6 +1,12 @@
 * {
 	font-family: Consolas, sans-serif;
 }
+body{
+width: 100vw;
+}
+head{
+width: 100vw;
+}
 @font-face {
   font-family: 'font2';
   src: url('font2.ttf') format('truetype'),

@@ -37,8 +37,16 @@ head {
 	position: absolute;
 	top: 0;
 	left: 0;
+	transition: background-color 0.6s ease;
+	transition: color 0.6s ease;
 }
-
+.navbar:hover {
+    background-color: #F0F0F0;
+    color: black;
+}
+.navbar:hover #yellowBut{
+    background-color: #F9D949;
+}
 .navbar {
 	border-bottom: 1px solid white;
 }

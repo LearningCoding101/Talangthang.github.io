@@ -354,6 +354,7 @@ main {
   border-radius: 1%;
   flex-direction: column;
   align-item: flex-start;
+  row-gap: 1%;
   
 }
 input[type="checkbox"] {
@@ -364,9 +365,7 @@ input[type="checkbox"] {
   border-radius: 10%;
   background-color: #F0F0F0;
   border: 1px solid #3C486B;
-  box-shadow: 7px 6px 235px 10px rgba(0,0,0,0.83);
--webkit-box-shadow: 7px 6px 235px 10px rgba(0,0,0,0.83);
--moz-box-shadow: 7px 6px 235px 10px rgba(0,0,0,0.83);
+  box-shadow: 2px 2px 8px 0px #000;
 }
 input[type="checkbox"]:checked {
   border-color: #F45050;

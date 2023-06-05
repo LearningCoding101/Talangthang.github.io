@@ -16,11 +16,11 @@
 
 				</div>
 				<div class="col-1 offset-1" id="ig">
-					<a href="#">Home
+					<a href="/">Home
 					</a>
 				</div>
 				<div class="col-1" id="ig">
-					<a href="#">Info</a>
+					<a href="/Info">Info</a>
 				</div>
 				<div class="col-1" id="ig">
 					<a href="/Destination">Destination</a>
@@ -53,8 +53,6 @@
       <div id = "desDetail" style="width:20%;">
         <div style="margin: 5% 5% 5% 5%; border-bottom: 5px solid #3C486B;">Phân loại</div>
 		  <div class="desContainer">
-			  <input type="checkbox" id="myCheckbox">
-			  <label for="myCheckbox">Check me</label>
 		  </div>
 	  </div>
       <div id = "desPlace" style="width: 80%">Test</div>
@@ -62,11 +60,28 @@
     </div>
     <script>
     fetch('/PlaceType')
-    	.then(response => response.json)
-    	.then(data => {
-			Detail = document.getElementById('desDetail');
+    .then(response => response.json())
+    .then(data => {
+        var Detail = document.getElementById('desDetail');
+        data.forEach(place => {
+            var Current = document.createElement('div');
+            Current.classList.add("desContainer");
 
-    	})
+            var input = document.createElement('input');
+            input.type = "checkbox";
+            input.id = "myCheckbox";
+			input.setAttribute("data-id", data.TypeID);
+			input.setAttribute("data-name", data.TypeName);
+            var label = document.createElement('label');
+            label.setAttribute("for", "myCheckbox");
+            label.textContent = place.TypeName;
+
+            Current.appendChild(input);
+            Current.appendChild(label);
+            Detail.appendChild(Current);
+        });
+    });
+
     </script>
   </div>
 

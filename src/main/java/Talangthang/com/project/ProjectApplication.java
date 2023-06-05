@@ -27,4 +27,13 @@ public class ProjectApplication {
 	public Resource Destination(){
 		return new ClassPathResource("static/Destination.html");
 	}
+
+	@RequestMapping("/Info")
+	@RequestMapping("/Combo")
+	@RequestMapping("/Safety")
+	@RequestMapping("/About-us")
+	@RequestMapping("/Contact")
+	public Resource placeholder(){
+		return new ClassPathResource("static/placeholder.html")
+	}
 }

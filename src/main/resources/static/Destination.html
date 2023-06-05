@@ -56,30 +56,37 @@
 		  </div>
 	  </div>
       <div id = "desPlace" style="width: 80%">
-			<div class="image-container">
-				<div class="overlay"></div>
-			</div>
-		  <div class="image-container">
-			  <div class="overlay"></div>
-		  </div>
-		  <div class="image-container">
-			  <div class="overlay"></div>
-		  </div>
-		  <div class="image-container">
-			  <div class="overlay"></div>
-		  </div>
-		  <div class="image-container">
-			  <div class="overlay"></div>
-		  </div>
 	  </div>
       
     </div>
+	  <script>
+    fetch('/DestinationResources')
+    .then(response => response.json())
+    .then(data => {
+        var Detail = document.getElementById('desPlace');
+        data.forEach(data => {
+            var Current = document.createElement('div');
+            Current.classList.add("image-container");
+            Current.style.backgroundImage = 'url("'+ data.Img+'")';
+            Current.setAttribute("data-id", data.TypeID);
+			var info = document.createElement('p');
+			info.classList.add("infoText");
+			info.textContent = data.DesName;
+			var overlay = document.createElement('div');
+			overlay.classList.add("overlay");
+			Current.appendChild(info);
+			Current.appendChild(overlay);
+            Detail.appendChild(Current);
+        });
+    });
+
+    </script>
     <script>
     fetch('/PlaceType')
     .then(response => response.json())
     .then(data => {
         var Detail = document.getElementById('desDetail');
-        data.forEach(place => {
+        data.forEach(data => {
             var Current = document.createElement('div');
             Current.classList.add("desContainer");
 
@@ -90,7 +97,7 @@
 			input.setAttribute("data-name", data.TypeName);
             var label = document.createElement('label');
             label.setAttribute("for", "myCheckbox");
-            label.textContent = place.TypeName;
+            label.textContent = data.TypeName;
 
             Current.appendChild(input);
             Current.appendChild(label);
@@ -99,6 +106,7 @@
     });
 
     </script>
+
   </div>
 
 <div id="feedback">

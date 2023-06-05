@@ -46,6 +46,9 @@ head {
 	left: 0;
 	transition: background-color 0.6s ease;
 	transition: color 0.6s ease;
+	box-shadow: 1px 22px 206px -38px rgba(0,0,0,0.67);
+    -webkit-box-shadow: 1px 22px 206px -38px rgba(0,0,0,0.67);
+    -moz-box-shadow: 1px 22px 206px -38px rgba(0,0,0,0.67);
 }
 .navbar:hover {
     background-color: #F0F0F0;
@@ -353,14 +356,32 @@ main {
   align-item: flex-start;
   
 }
-.box {
+input[type="checkbox"] {
+  appearance: none;
   margin-left: 5%;
   width: 25px;
   height: 25px;
   border-radius: 10%;
   background-color: #F0F0F0;
   border: 1px solid #3C486B;
-box-shadow: 7px 6px 235px 10px rgba(0,0,0,0.83);
+  box-shadow: 7px 6px 235px 10px rgba(0,0,0,0.83);
 -webkit-box-shadow: 7px 6px 235px 10px rgba(0,0,0,0.83);
 -moz-box-shadow: 7px 6px 235px 10px rgba(0,0,0,0.83);
+}
+input[type="checkbox"]:checked {
+  border-color: #F45050;
+}
+input[type="checkbox"]:checked:after {
+	content: '\2714';
+	font-size: 14px;
+	position: relative;
+	top: 3px;
+	left: 5px;
+	color: #F45050;
+}
+.desContainer{
+    display: flex;
+    justify-content: flex-start;
+    align-item: center;
+    column-gap: 5%;
 }

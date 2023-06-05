@@ -52,13 +52,21 @@
     <div id="desTable">
       <div id = "desDetail" style="width:20%;">
         <div style="margin: 5% 5% 5% 5%; border-bottom: 5px solid #3C486B;">Phân loại</div>
-        <div> <svg class="box"></svg> test</div>
-      </div>
+		  <div class="desContainer">
+			  <input type="checkbox" id="myCheckbox">
+			  <label for="myCheckbox">Check me</label>
+		  </div>
+	  </div>
       <div id = "desPlace" style="width: 80%">Test</div>
       
     </div>
     <script>
-    fetch('/')
+    fetch('/PlaceType')
+    	.then(response => response.json)
+    	.then(data => {
+			Detail = document.getElementById('desDetail');
+
+    	})
     </script>
   </div>
 

@@ -48,6 +48,24 @@
 </head>
 
 <body>
+	<script>
+		function pingEndpoint() {
+  			fetch('/Count')
+    			.then(response => {
+      			if (response.ok) {
+       				 console.log('Endpoint is reachable');
+      					} else {
+        			console.log('Endpoint is not reachable');
+      				}
+    })
+    .catch(error => {
+      console.log('An error occurred while pinging the endpoint:', error);
+    });
+}
+	window.addEventListener('load', function() {
+	pingEndpoint();
+	});
+	</script>
 
 	<div class="bg-container">
 		<div class="row" id="first">

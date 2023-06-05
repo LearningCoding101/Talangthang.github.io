@@ -6,6 +6,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
@@ -28,12 +29,9 @@ public class ProjectApplication {
 		return new ClassPathResource("static/Destination.html");
 	}
 
-	@RequestMapping("/Info")
-	@RequestMapping("/Combo")
-	@RequestMapping("/Safety")
-	@RequestMapping("/About-us")
-	@RequestMapping("/Contact")
+	@RequestMapping(value = {"/Info", "/Combo", "/Safety", "/About-us", "/Contact"})
+	@ResponseBody
 	public Resource placeholder(){
-		return new ClassPathResource("static/placeholder.html")
+		return new ClassPathResource("static/placeholder.html");
 	}
 }

@@ -21,4 +21,9 @@ class PlaceTypeController {
         String sql = "SELECT * FROM PlaceType";
         return jdbcTemplate.queryForList(sql);
     }
+    @GetMapping("/DestinationResources")
+    public List<Map<String, Object>> getDes(){
+        String sql = "Select Destination.*, Picture.* FROM Destination Join Picture Where Destination.DesID = Picture.DestinationID ";
+        return jdbcTemplate.queryForList(sql);
+    }
 }

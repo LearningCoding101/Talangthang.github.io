@@ -81,27 +81,33 @@
     </script>
     <script>
     fetch('/PlaceType')
-    .then(response => response.json())
-    .then(data => {
-        var Detail = document.getElementById('desDetail');
-        data.forEach(data => {
-            var Current = document.createElement('div');
-            Current.classList.add("desContainer");
+  .then(response => response.json())
+  .then(data => {
+    var Detail = document.getElementById('desDetail');
+    data.forEach(item => {
+      var Current = document.createElement('div');
+      Current.classList.add("desContainer");
 
-            var input = document.createElement('input');
-            input.type = "checkbox";
-            input.id = "myCheckbox";
-			input.setAttribute("data-id", data.TypeID);
-			input.setAttribute("data-name", data.TypeName);
-            var label = document.createElement('label');
-            label.setAttribute("for", "myCheckbox");
-            label.textContent = data.TypeName;
+      var input = document.createElement('input');
+      input.type = "checkbox";
+      input.setAttribute("data-ids", item.TypeID);
+      input.setAttribute("data-names", item.TypeName);
 
-            Current.appendChild(input);
-            Current.appendChild(label);
-            Detail.appendChild(Current);
+      var label = document.createElement('label');
+      label.textContent = item.TypeName;
+
+      input.addEventListener('change', function() {
+        var elements = document.querySelectorAll('[data-id="' + item.TypeID + '"]');
+        elements.forEach(element => {
+          element.style.display = input.checked ? "none" : "";
         });
+      });
+
+      Current.appendChild(input);
+      Current.appendChild(label);
+      Detail.appendChild(Current);
     });
+  });
 
     </script>
 

@@ -24,10 +24,6 @@ public class ProjectApplication {
 	public Resource fullView(){
 		return new ClassPathResource("static/test.html");
 	}
-	@RequestMapping("/Destination")
-	public Resource Destination(){
-		return new ClassPathResource("static/Destination.html");
-	}
 
 	@RequestMapping(value = {"/Info", "/Combo", "/Safety", "/About-us", "/Contact"})
 	@ResponseBody

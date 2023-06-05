@@ -334,14 +334,18 @@ main {
 }
 
 #desContainer{
-  height: 100vh;
+  min-height: 0vh;
   width: 100vw;
+  height: auto;
   background: #F0F0F0;
   padding-top: 5%;
+  padding-bottom: 5%;
 }
 #desTable{
   width: 80vw;
+  min-height: 100vh;
   height: 100%;
+  height: auto;
   margin: 0 auto 0 auto;
   display: flex;
   flex-wrap: nowrap;
@@ -351,13 +355,13 @@ main {
 }
 #desDetail{
   display: flex;
-  height: 100%;
+  height: auto;
   background: #e0dcdc;
   border-radius: 1%;
   flex-direction: column;
-  align-item: flex-start;
   row-gap: 1%;
-  
+  align-item: center;
+  text-indent: 5px;
 }
 input[type="checkbox"] {
   appearance: none;
@@ -380,28 +384,22 @@ input[type="checkbox"]:checked:after {
 	left: 5px;
 	color: #F45050;
 }
-.desContainer{
-    display: flex;
-    justify-content: flex-start;
-    align-item: center;
-    column-gap: 5%;
-}
 #desPlace{
-    padding-left: 1%;
-    padding-top: 1%;
+    padding-left: 3%;
+    padding-top: 3%;
     background: #3C486B;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     align-content: flex-start;
     justify-content: flex-start;
-    row-gap: 1%;
-    column-gap: 1%;
+    row-gap: 5%;
+    column-gap: 3%;
 }
 .image-container {
   position: relative;
-  height: 24%;
-  aspect-ratio : 1 / 1;
+  width: 21%;
+  aspect-ratio : 16/9;
   background-size: cover;
   overflow: hidden;
   box-shadow: 10px 16px 32px -9px rgba(0,0,0,0.29);
@@ -421,6 +419,7 @@ input[type="checkbox"]:checked:after {
 }
 .infoText {
   position: absolute;
+  border-bottom: 5px solid #FFFFFF;
   font-family: Consolas, sans-serif;
   top: 10%;
   margin-left: 10%;

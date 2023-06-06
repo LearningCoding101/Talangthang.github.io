@@ -25,9 +25,13 @@ public class ProjectApplication {
 		return new ClassPathResource("static/test.html");
 	}
 
-	@RequestMapping(value = {"/Info", "/Combo", "/Safety", "/About-us", "/Contact"})
+	@RequestMapping(value = {"/Info", "/Combo", "/Safety", "/About-us"})
 	@ResponseBody
 	public Resource placeholder(){
 		return new ClassPathResource("static/placeholder.html");
+	}
+	@RequestMapping("/Contact")
+	public Resource contact(){
+		return new ClassPathResource("static/Contact.html");
 	}
 }

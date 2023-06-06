@@ -434,3 +434,7 @@ input[type="checkbox"]:checked:after {
 .image-container:hover .infoText {
   left: 0; /* Move the overlay into position on hover */
 }
+#Contact{
+    height: 100vh;
+    width: 100vw;
+}

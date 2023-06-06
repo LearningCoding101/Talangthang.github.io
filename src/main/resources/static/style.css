@@ -113,6 +113,9 @@ a:hover {
   flex-direction: column !important;
   width: 20em;
   height: 100%;
+  box-shadow: 22px 27px 43px -12px rgba(87,87,100,0.33);
+  -webkit-box-shadow: 22px 27px 43px -12px rgba(87,87,100,0.33);
+  -moz-box-shadow: 22px 27px 43px -12px rgba(87,87,100,0.33);
 }
 #item2-icon {
   display: flex;
@@ -126,6 +129,9 @@ a:hover {
   width: 6em;
   border-radius: 50%;
   margin-bottom: 10%;
+  box-shadow: 22px 27px 43px -12px rgba(0,0,0,0.33);
+  -webkit-box-shadow: 22px 27px 43px -12px rgba(0,0,0,0.33);
+  -moz-box-shadow: 22px 27px 43px -12px rgba(0,0,0,0.33);
 }
 #content {
   text-align: center;
@@ -172,7 +178,9 @@ main {
 
 #imgContain {
   background-color: #ffffff;
-  box-shadow: 0 0 5px 8px white inset;
+  box-shadow: 22px 27px 43px -12px rgba(0,0,0,0.33);
+  -webkit-box-shadow: 22px 27px 43px -12px rgba(0,0,0,0.33);
+  -moz-box-shadow: 22px 27px 43px -12px rgba(0,0,0,0.33);
   font-size: 16px;
   background: transparent;
   outline: none;
@@ -187,6 +195,11 @@ main {
   width: 100vw;
   background: #3c486b;
 
+}
+#text{
+    box-shadow: 22px 27px 43px -12px rgba(0,0,0,0.33);
+    -webkit-box-shadow: 22px 27px 43px -12px rgba(0,0,0,0.33);
+    -moz-box-shadow: 22px 27px 43px -12px rgba(0,0,0,0.33);
 }
 #feedbackBox {
     width: 60em;

@@ -181,6 +181,9 @@ main {
   box-shadow: 22px 27px 43px -12px rgba(0,0,0,0.33);
   -webkit-box-shadow: 22px 27px 43px -12px rgba(0,0,0,0.33);
   -moz-box-shadow: 22px 27px 43px -12px rgba(0,0,0,0.33);
+    filter: sepia(33%) brightness(111%) saturate(68%) contrast(92%) invert(4%);
+    -webkit-filter: sepia(33%) brightness(111%) saturate(68%) contrast(92%) invert(4%);
+    -moz-filter: sepia(33%) brightness(111%) saturate(68%) contrast(92%) invert(4%);
   font-size: 16px;
   background: transparent;
   outline: none;

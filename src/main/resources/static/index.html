@@ -121,18 +121,27 @@
 		<div id="line"><br></div>
 	</div>
 	<main id="top"></main>
-<div id="feedback">
-	<form class="form" style="position: relative" onsubmit="event.preventDefault(); sendFeedbackToBackend();">
-		<div class="title">Feedback</div>
-		<input type="text" id="emails" placeholder="Your email" class="input">
-		<textarea id="feedbacks" placeholder="Your feedback"></textarea>
+	<div id="feedback">
+		<div id="feedbackBox">
+			<form class="form" style="position: relative" onsubmit="event.preventDefault(); sendFeedbackToBackend();">
+				<div class="title">Feedback</div>
+				<input type="text" id="emails" placeholder="Your email" class="input">
+				<textarea id="feedbacks" placeholder="Your feedback"></textarea>
 
-		<button>Click me</button>
-	</form>
-	<button id="button2" onClick="display()" class="button2">
-		Click me
-	</button>
-</div>
+				<button id="quick">Submit</button>
+			</form>
+		</div>
+		<div id="infoBox">
+
+			<i class="fa-solid fa-map-location"></i>
+			<div style="column: 2;">Lô E2a-7, Đường D1, Đ. D1, Long Thạnh Mỹ, Thành Phố Thủ Đức<br> Thành phố Hồ Chí Minh 700000, Việt Nam, Ho Chi Minh City, Vietnam
+			</div>
+			<i class="fa-solid fa-envelope"></i>
+			<div>Talangthang2023@gmail.com</div>
+			<i class="fa-brands fa-facebook"></i>
+			<div>https://www.facebook.com/talangthang2023</div>
+		</div>
+	</div>
 <script>
 		function display() {
 			const displayElement = document.getElementById('button2');

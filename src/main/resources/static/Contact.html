@@ -1,7 +1,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <head style="background: #F0F0F0">
-<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="style.css">
 	<link href="font2.ttf" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 	<script src="https://kit.fontawesome.com/b1ec44aa49.js" crossorigin="anonymous"></script>
@@ -16,11 +17,11 @@
 
 				</div>
 				<div class="col-1 offset-1" id="ig">
-					<a href="#">Home
+					<a href="/">Home
 					</a>
 				</div>
 				<div class="col-1" id="ig">
-					<a href="#">Info</a>
+					<a href="/Info">Info</a>
 				</div>
 				<div class="col-1" id="ig">
 					<a href="/Destination">Destination</a>
@@ -39,7 +40,7 @@
 					<a href="/Contact">Contact</a>
 				</div>
 				<div class="col-3 d-flex align-items-stretch d-flex" id="ig">
-					<button class="btn btn-light w-100 " id="yellowBut"style="height: 5rem; font-size: 20px; color:#3C486B;"><b>Become Local Expert</b></button>
+					<button class="btn btn-light w-100 " id="yellowBut" style="height: 5rem; font-size: 20px; color:#3C486B;"><b>Become Local Expert</b></button>
 				</div>
 			</div>
 		</div>
@@ -48,83 +49,110 @@
 </head>
 
 <body>
-  <div id="">
-	  <form id="contact-form" onsubmit="sendEmail(); reset(); return false;">
-		  <input type="text" id="name" placeholder="Your Name" required="">
-		  <input type="email" id="email" placeholder="Your Email" required="">
-		  <input type="text" id="subject" placeholder="Subject" required="">
-		  <textarea id="message" placeholder="Your Message" required=""></textarea>
-		  <button type="submit">Send Email</button>
-	  </form>
-  </div>
+<div id="Contact">
+	<div id="query">
+
+		<i class="fa-solid fa-map-location"></i>
+		<div style="column: 2;">Lô E2a-7, Đường D1, Đ. D1, Long Thạnh Mỹ, Thành Phố Thủ Đức<br> Thành phố Hồ Chí Minh 700000, Việt Nam, Ho Chi Minh City, Vietnam
+		</div>
+		<i class="fa-solid fa-envelope"></i>
+		<div>Talangthang2023@gmail.com</div>
+		<i class="fa-brands fa-facebook"></i>
+		<div>https://www.facebook.com/talangthang2023</div>
+		<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15674.440041588125!2d106.809883!3d10.8411276!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752731176b07b1%3A0xb752b24b379bae5e!2sFPT%20University%20HCMC!5e0!3m2!1sen!2s!4v1686064598763!5m2!1sen!2s"style="border:0; grid-area: b;  height: 100%; width: 100%;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+	</div>
+
+	<div id="headContainer" style="grid-area: header;">
+		<p id="heading" ;>Cần liên hệ với chúng tôi?<br>Hãy sử dụng một trong các lựa chọn dưới đây<br> Đội ngũ của chúng tôi sẽ rất vui lòng giúp bạn.</p>
+		<div style="width: 80%; border-top: 5px solid #3C486B; position: relative;grid-area: header;"></div>
+	</div>
+
+	<form id="contact-form" onsubmit="sendEmail(); reset(); return false;">
+		<input type="text" id="name" style="grid-area: name" placeholder="Tên" required="">
+		<input type="email" id="email" style="grid-area: email" placeholder="Email" required="">
+		<input type="text" id="subject" style="grid-area: subject" placeholder="Tiêu đề" required="">
+		<textarea id="message" placeholder="Thông tin" style="grid-area: body" required=""></textarea>
+		<button type="submit" style="grid-area: submit">Send Email</button>
+	</form>
+</div>
 
 <div id="feedback">
-	<form class="form" style="position: relative" onsubmit="event.preventDefault(); sendFeedbackToBackend();">
-		<div class="title">Feedback</div>
-		<input type="text" id="emails" placeholder="Your email" class="input">
-		<textarea id="feedbacks" placeholder="Your feedback"></textarea>
+	<div id="feedbackBox">
+		<form class="form" style="position: relative" onsubmit="event.preventDefault(); sendFeedbackToBackend();">
+			<div class="title">Feedback</div>
+			<input type="text" id="emails" placeholder="Your email" class="input">
+			<textarea id="feedbacks" placeholder="Your feedback"></textarea>
 
-		<button>Click me</button>
-	</form>
-	<script>
-	function sendEmail(){
-		var name = document.getElementById('name').value;
-		var email = document.getElementById('email').value;
-		var subject = document.getElementById('subject').value;
-		var body = document.getElementById('message').value;
-			var data = {
-				name: name,
-				email: email,
-				subject : subject,
-				message: body
-				};
+			<button id="quick">Submit</button>
+		</form>
+	</div>
+	<div id="infoBox">
 
-			fetch('/send-email', {
-			  method: 'POST',
-			  headers: {
-				'Content-Type': 'application/json'
-			  },
-			  body: JSON.stringify(data)
-			})
-			  .then(response => response.json())
-			  .then(result => {
-				// Handle the response from the server
-				console.log(result);
-			  })
-			  .catch(error => {
-				// Handle any errors that occur during the request
-				console.error(error);
-			  });
-
-		}
-	</script>
+		<i class="fa-solid fa-map-location"></i>
+		<div style="column: 2;">Lô E2a-7, Đường D1, Đ. D1, Long Thạnh Mỹ, Thành Phố Thủ Đức, Thành phố Hồ Chí Minh 700000, Việt Nam, Ho Chi Minh City, Vietnam
+		</div>
+		<i class="fa-solid fa-envelope"></i>
+		<div>Talangthang2023@gmail.com</div>
+		<i class="fa-brands fa-facebook"></i>
+		<div>https://www.facebook.com/talangthang2023</div>
+	</div>
 </div>
 <script>
-		function sendFeedbackToBackend() {
-			var email = document.getElementById('emails').value;
-			var feedback = document.getElementById('feedbacks').value;
-			var emails = document.getElementById('emails');
-			var feedbacks = document.getElementById('feedbacks');
-			var data = {
-				email: email,
-				feedback: feedback
-			};
-			var xhr = new XMLHttpRequest();
-			xhr.open('POST', '/feedback', true);
-			xhr.setRequestHeader('Content-Type', 'application/json');
-			xhr.onreadystatechange = function() {
-				if (xhr.readyState === 4 && xhr.status === 200) {
-					var response = JSON.parse(xhr.responseText);
-					// Handle the response from the backend
-				}
-			};
-			emails.value = "";
-			feedbacks.value = "";
-			emails.placeholder = "Cảm ơn vì Feedback của bạn";
-			feedbacks.placeholder = "Cảm ơn vì Feedback của bạn";
-			xhr.send(JSON.stringify(data));
-		}
-	</script>
-
+    function sendEmail() {
+      var name = document.getElementById('name').value;
+      var email = document.getElementById('email').value;
+      var subject = document.getElementById('subject').value;
+      var body = document.getElementById('message').value;
+      var data = {
+        name: name,
+        email: email,
+        subject: subject,
+        message: body
+      };
+      fetch('/send-email', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(result => {
+          // Handle the response from the server
+          console.log(result);
+        })
+        .catch(error => {
+          // Handle any errors that occur during the request
+          console.error(error);
+        });
+    }
+  </script>
+</div>
+<script>
+    function sendFeedbackToBackend() {
+      var email = document.getElementById('emails').value;
+      var feedback = document.getElementById('feedbacks').value;
+      var emails = document.getElementById('emails');
+      var feedbacks = document.getElementById('feedbacks');
+      var data = {
+        email: email,
+        feedback: feedback
+      };
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', '/feedback', true);
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          var response = JSON.parse(xhr.responseText);
+          // Handle the response from the backend
+        }
+      };
+      emails.value = "";
+      feedbacks.value = "";
+      emails.placeholder = "Cảm ơn vì Feedback của bạn";
+      feedbacks.placeholder = "Cảm ơn vì Feedback của bạn";
+      xhr.send(JSON.stringify(data));
+    }
+  </script>
 
 </body>

@@ -5,12 +5,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
 @RestController
 public class ProjectApplication {
+
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProjectApplication.class, args);
@@ -44,5 +46,9 @@ public class ProjectApplication {
 	@RequestMapping("/About-us")
 	public Resource About(){
 		return new ClassPathResource("static/about.html");
+	}
+	@GetMapping(value = {"/Information/{name}"})
+	public Resource getDefault(@PathVariable(required = false) String name) {
+		return new ClassPathResource("static/Default.html");
 	}
 }

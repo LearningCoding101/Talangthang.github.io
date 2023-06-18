@@ -23,7 +23,22 @@ class PlaceTypeController {
     }
     @GetMapping("/DestinationResources")
     public List<Map<String, Object>> getDes(){
-        String sql = "Select Destination.*, Picture.* FROM Destination Join Picture Where Destination.DesID = Picture.DestinationID ";
+        /*String sql = "Select Destination.*, Picture.* FROM Destination Join Picture Where Destination.DesID = Picture.DestinationID ";*/
+        String sql = "SELECT Destination.WardID, Destination.DesID, Destination.TypeID, Destination.DesName, " +
+                "Ward.WardID, Ward.DistrictID, " +
+                "District.ProvinceID, District.DistrictID, " +
+                "Province.ProvinceID, Province.ProvinceName, Picture.* " +
+                "FROM Destination " +
+                "JOIN Picture ON Destination.DesID = Picture.DestinationID " +
+                "JOIN Ward ON Destination.WardID = Ward.WardID " +
+                "JOIN District ON Ward.DistrictID = District.DistrictID " +
+                "JOIN Province ON District.ProvinceID = Province.ProvinceID";
         return jdbcTemplate.queryForList(sql);
     }
+    @GetMapping("/ProvinceResource")
+    public List<Map<String, Object>> getProvince(){
+        String sql = "Select Province.* From Province";
+        return jdbcTemplate.queryForList(sql);
+    }
+
 }

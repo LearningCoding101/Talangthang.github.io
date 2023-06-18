@@ -431,7 +431,7 @@ input[type="checkbox"]:checked:after {
 }
 .image-container {
   position: relative;
-  width: 21%;
+  width: 100%;
   aspect-ratio: 16/9;
   background-size: cover;
   overflow: hidden;

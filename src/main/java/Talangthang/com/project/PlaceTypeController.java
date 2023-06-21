@@ -100,5 +100,4 @@ class PlaceTypeController {
         String sql = "Select Province.* From Province";
         return jdbcTemplate.queryForList(sql);
     }
-
 }

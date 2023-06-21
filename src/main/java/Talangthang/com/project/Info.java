@@ -16,9 +16,14 @@ public class Info {
     public Info(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
-    @GetMapping("/test/{name}")
+    @GetMapping("/Information/{name}/Resources")
     public List<Map<String, Object>> testing(@PathVariable String name) {
-        String sql = "SELECT * FROM Destination WHERE DesID = ?";
+        String sql = "SELECT Destination.*, Picture.* " +
+                "FROM Destination " +
+                "JOIN Picture ON Destination.DesID = Picture.DestinationID " +
+                "WHERE Destination.DesID = ? " +
+                "LIMIT 1;";
+
         return jdbcTemplate.queryForList(sql, name);
     }
 }

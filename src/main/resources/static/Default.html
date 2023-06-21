@@ -65,9 +65,12 @@
 	Phần này em ch code xong :( ;
 	<script>
 		var currentURL = window.location.href;
-		fetch(currentURL + '/testing')
+		fetch(currentURL + '/Resources')
 		.then(response => response.json())
-		.then(data =>
+		.then(data => {
+			var Detail = document.getElementById('desContainer');
+			Detail.innerHTML = JSON.stringify(data);
+		})
 	</script>
 </div>
 

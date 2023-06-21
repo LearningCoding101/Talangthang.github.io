@@ -96,10 +96,16 @@
 		  	font-size: 10px !important;
 		  }
 		  .title{
-
 		  	width: 25rem;
 		  }
-		}
+
+		  a.DestinationContainer{
+		  	width: 45% !important;
+		  }
+		  .InfoText{
+		  	font-size: 15px !important;
+		  }
+
 
 	</style>
 	<nav class="navbar navbar-light " style="z-index: 1;">
@@ -163,12 +169,14 @@
         link.setAttribute("data-id", data.TypeID);
         link.setAttribute("data-ProvinceIDs", data.ProvinceID);
         link.setAttribute("data-ProvinceNames", data.ProvinceName);
+        link.classList.add("DestinationContainer");
         link.style.width = "21%";
         link.setAttribute("href",`/Information/name?=${data.DesID}`);
             var Current = document.createElement('div');
             Current.classList.add("image-container");
             Current.style.backgroundImage = 'url("'+ data.Img+'")';
             Current.setAttribute("data-id", data.TypeID);
+            Current.classList.add("DestinationContainer");
             Current.setAttribute("data-ProvinceIDs", data.ProvinceID);
             Current.setAttribute("data-ProvinceNames", data.ProvinceName);
 			var info = document.createElement('p');

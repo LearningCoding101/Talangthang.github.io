@@ -19,5 +19,4 @@ public class DestinationController {
     public Resource Destination(){
         return new ClassPathResource("static/Destination.html");
     }
-
 }

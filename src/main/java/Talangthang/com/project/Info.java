@@ -26,4 +26,9 @@ public class Info {
 
         return jdbcTemplate.queryForList(sql, name);
     }
+    @GetMapping("/Information/{name}/Picture")
+    public List<Picture> Picture(@PathVariable String name) {
+        String sql = "SELECT * FROM Picture WHERE Picture.DestinationID = ?";
+        return jdbcTemplate.query(sql, new PictureRowMapper(), name);
+    }
 }

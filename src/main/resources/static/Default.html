@@ -104,7 +104,18 @@
 
 	</style>
 	<style>
-
+		#DesContainer{
+		counter-increment: myIndex;
+		padding-left: 10%;
+		padding-right: 5%;
+		}
+		.image{
+			position: relative;
+			display: block;
+			 margin: auto;
+			  width: 50%;
+			  padding: 10px;
+		}
 		#DesNameDes{
 			position: absolute;
 			top: 0;
@@ -122,19 +133,97 @@
 			padding-left: 10%;
 		}
 
-		#DesNameDes > div:nth-child(2){
-			font-size: 200%;
+		#DesNameDes > div:nth-child(1){
+			font-size: 300%;
+			font-family: "danhda" , Consolas !important;
 		}
 		#DesNameDes div{
 			position: relative;
 			font-size: 100%;
 			color: white;
 		}
-		#IntroDes,#DesPlaceDes,#SttSecurityDes,#OnedayDes,#CuisineDes,#HistoryDes,#VehicleDes,#MoreInfoDes,#OtherDes,#ReferenceDes{
-			margin: 0 10% 0 10%;
+		#IntroDes > div,
+		#DesPlaceDes > div,
+		#SttSecurityDes > div,
+		#OnedayDes > div,
+		#CuisineDes > div,
+		#HistoryDes > div,
+		#VehicleDes > div,
+		#MoreInfoDes > div,
+		#OtherDes > div,
+		#ReferenceDes > div {
+  			padding-left: 10%;
+}
+
+
+		#IntroDes::before {
+			content: counter(myIndex) ". Giới thiệu";
+			font-size: 200%;
+			font-family: "danhda" , Consolas !important;
 		}
-
-
+		#DesPlaceDes::before {
+			counter-increment: myIndex;
+			content: counter(myIndex) ". Sơ lược";
+			font-size: 200%;
+			font-family: "danhda" , Consolas !important;
+		}
+		#OtherDes::before {
+			counter-increment: myIndex;
+			content: counter(myIndex) ". Sơ lược";
+			font-size: 200%;
+			font-family: "danhda" , Consolas !important;
+		}
+		#OnedayDes::before {
+			counter-increment: myIndex;
+			content: counter(myIndex) ". Trong một ngày";
+			font-size: 200%;
+			font-family: "danhda" , Consolas !important;
+		}
+		#TeambuildingDes::before {
+			counter-increment: myIndex;
+			content: counter(myIndex) ". Teambuilding";
+			font-size: 200%;
+			font-family: "danhda" , Consolas !important;
+		}
+		#BackpackingDes::before {
+			counter-increment: myIndex;
+			content: counter(myIndex) ". Backpacking";
+			font-size: 200%;
+			font-family: "danhda" , Consolas !important;
+		}
+		#OtherDes::before {
+			counter-increment: myIndex;
+			content: counter(myIndex) ". Ngoài ra";
+			font-size: 200%;
+			font-family: "danhda" , Consolas !important;
+		}
+		#CuisineDes::before {
+			counter-increment: myIndex;
+			content: counter(myIndex) ". Ẩm thực";
+			font-size: 200%;
+			font-family: "danhda" , Consolas !important;
+		}
+		#VehicleDes::before {
+			counter-increment: myIndex;
+			content: counter(myIndex) ". Xe cộ";
+			font-size: 200%;
+			font-family: "danhda" , Consolas !important;
+		}
+		#HistoryDes::before {
+			counter-increment: myIndex;
+			content: counter(myIndex) ". Lịch sử";
+			font-size: 200%;
+			font-family: "danhda" , Consolas !important;
+		}
+		#TourDes::before {
+			counter-increment: myIndex;
+			content: counter(myIndex) ". Đi tour";
+			font-size: 200%;
+			font-family: "danhda" , Consolas !important;
+		}
+		#DesPlaceDes > img, #SttSecurityDes > img {
+			display: none;
+		}
 	</style>
 	<nav class="navbar navbar-light " style="z-index: 1;">
 		<div class=" container">
@@ -197,6 +286,7 @@
 					var Text = data[0][key].replace(/\n/g, "</div> <div>");
 					testText.innerHTML = Text;
 					current.setAttribute("id", `${key}` + "Des");
+					current.classList.add("main");
 					current.appendChild(testText);
 					appendElement.appendChild(current);
 				}
@@ -211,6 +301,29 @@
 			bacIMG.insertAdjacentElement("afterend", buffer);
 
 		});
+	</script>
+	<script>
+		fetch(currentURL + "/Picture")
+  .then(response => response.json())
+  .then(data => {
+    const parentElements = document.querySelectorAll(".main");
+    let j = 0;
+    for (let i = 0; i < parentElements.length; i++) {
+      if (i < 1) {
+        continue;
+      }
+      if (data[j] && data[j].img) {
+        const picElement = document.createElement('img');
+        picElement.src = data[j].img;
+        picElement.classList.add("image");
+        parentElements[i].appendChild(picElement);
+      }
+      j = (j + 1) % data.length;
+    }
+  });
+
+
+
 	</script>
 </div>
 

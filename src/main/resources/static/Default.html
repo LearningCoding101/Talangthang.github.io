@@ -103,6 +103,33 @@
 		}
 
 	</style>
+	<style>
+		#DesNameDes{
+			position: absolute;
+			top: 0;
+			left: 0;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 80vh;
+			width: 100vw;
+			background: linear-gradient(0deg, #3DE2E2 0%, #FFFFFF 100%);
+			filter: grayscale(18%) sepia(16%) brightness(93%) hue-rotate(13deg) saturate(110%) contrast(107%);
+-webkit-filter: grayscale(18%) sepia(16%) brightness(93%) hue-rotate(13deg) saturate(110%) contrast(107%);
+-moz-filter: grayscale(18%) sepia(16%) brightness(93%) hue-rotate(13deg) saturate(110%) contrast(107%);
+		}
+
+		#DesNameDes div{
+			position: relative;
+			font-size: 400%;
+			color: white;
+		}
+		#IntroDes,#DesPlaceDes,#SttSecurityDes
+		,#HistoryDes,#TourDes,#TeambuildingDes,#BackpackingDes,
+		#OnedayDes,#OtherDes,#CuisineDes,#VehicleDes,#MoreInfoDes{
+			margin: 0 10% 0 10%;
+		}
+	</style>
 	<nav class="navbar navbar-light " style="z-index: 1;">
 		<div class=" container">
 			<div class="row align-items-center">
@@ -156,15 +183,35 @@
 
 <body>
 <div id="desContainer">
-	What
 	<script>
 		var currentURL = window.location.href;
 		fetch(currentURL + '/Resources')
 		.then(response => response.json())
 		.then(data => {
-			var Detail = document.getElementById('desContainer');
-			Detail.innerHTML = JSON.stringify(data);
-		})
+		var i = 0;
+		delete data[0].WardID;
+		delete data[0].DesID;
+		delete data[0].TypeID;
+			Object.keys(data[0]).forEach(key => {
+				if(data[0][key] !== null){
+					var appendElement = document.getElementById("desContainer");
+					var current = document.createElement("div");
+					var testText = document.createElement("div");
+					var Text = data[0][key].replace(/\n/g, "</div> <div>");
+					testText.innerHTML = Text;
+					current.setAttribute("id", `${key}` + "Des");
+					current.appendChild(testText);
+					appendElement.appendChild(current);
+				}
+			})
+			var bacIMG = document.getElementById("DesNameDes");
+			bacIMG.setAttribute("data-IMG", data[0].Img);
+			bacIMG.setAttribute("style", "background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 6)), url('" + bacIMG.getAttribute("data-img") + "');");
+			var buffer = document.createElement("div");
+			buffer.style.height = "70vh";
+			buffer.style.width = "100vw";
+			bacIMG.insertAdjacentElement("afterend", buffer);
+		});
 	</script>
 </div>
 

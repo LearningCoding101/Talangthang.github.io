@@ -44,6 +44,10 @@
   src: url("font2.ttf") format("truetype"), url("font2.woff") format("woff");
 }
 @font-face {
+   font-family: "danhda";
+   src: url("test.ttf") format("truetype");
+ }
+@font-face {
   font-family: "Font1";
   src: url("Font1.ttf") format("truetype"), url("Font1.woff") format("woff");
 }

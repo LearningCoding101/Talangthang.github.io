@@ -104,12 +104,14 @@
 
 	</style>
 	<style>
+
 		#DesNameDes{
 			position: absolute;
 			top: 0;
 			left: 0;
 			display: flex;
-			justify-content: center;
+			flex-direction: roww;
+			justify-content: flex-start;
 			align-items: center;
 			height: 80vh;
 			width: 100vw;
@@ -117,18 +119,22 @@
 			filter: grayscale(18%) sepia(16%) brightness(93%) hue-rotate(13deg) saturate(110%) contrast(107%);
 -webkit-filter: grayscale(18%) sepia(16%) brightness(93%) hue-rotate(13deg) saturate(110%) contrast(107%);
 -moz-filter: grayscale(18%) sepia(16%) brightness(93%) hue-rotate(13deg) saturate(110%) contrast(107%);
+			padding-left: 10%;
 		}
 
+		#DesNameDes > div:nth-child(2){
+			font-size: 200%;
+		}
 		#DesNameDes div{
 			position: relative;
-			font-size: 400%;
+			font-size: 100%;
 			color: white;
 		}
-		#IntroDes,#DesPlaceDes,#SttSecurityDes
-		,#HistoryDes,#TourDes,#TeambuildingDes,#BackpackingDes,
-		#OnedayDes,#OtherDes,#CuisineDes,#VehicleDes,#MoreInfoDes{
+		#IntroDes,#DesPlaceDes,#SttSecurityDes,#OnedayDes,#CuisineDes,#HistoryDes,#VehicleDes,#MoreInfoDes,#OtherDes,#ReferenceDes{
 			margin: 0 10% 0 10%;
 		}
+
+
 	</style>
 	<nav class="navbar navbar-light " style="z-index: 1;">
 		<div class=" container">
@@ -169,16 +175,7 @@
 		</div>
 		</div>
 	</nav>
-	<!--<script>
-		fetch("/getCSS")
-			  .then(response => response.text())
-			  .then(data => {
-				var styleTag = document.getElementById('myStyle');
-				styleTag.innerHTML = styleTag.innerHTML + data;
-			  });
 
-
-	</script>-->
 </head>
 
 <body>
@@ -206,11 +203,13 @@
 			})
 			var bacIMG = document.getElementById("DesNameDes");
 			bacIMG.setAttribute("data-IMG", data[0].Img);
-			bacIMG.setAttribute("style", "background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 6)), url('" + bacIMG.getAttribute("data-img") + "');");
+			bacIMG.setAttribute("style", "background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 6)), url('" + bacIMG.getAttribute("data-img") + "'); background-repeat: no-repeat; background-size: cover;");
+
 			var buffer = document.createElement("div");
 			buffer.style.height = "70vh";
 			buffer.style.width = "100vw";
 			bacIMG.insertAdjacentElement("afterend", buffer);
+
 		});
 	</script>
 </div>

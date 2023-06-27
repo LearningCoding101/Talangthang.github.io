@@ -203,4 +203,30 @@
 				});
 		}
 	</script>
+  <script>
+		function sendFeedbackToBackend() {
+			var email = document.getElementById('emails').value;
+			var feedback = document.getElementById('feedbacks').value;
+			var emails = document.getElementById('emails');
+			var feedbacks = document.getElementById('feedbacks');
+			var data = {
+				email: email,
+				feedback: feedback
+			};
+			var xhr = new XMLHttpRequest();
+			xhr.open('POST', '/feedback', true);
+			xhr.setRequestHeader('Content-Type', 'application/json');
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState === 4 && xhr.status === 200) {
+					var response = JSON.parse(xhr.responseText);
+					// Handle the response from the backend
+				}
+			};
+			emails.value = "";
+			feedbacks.value = "";
+			emails.placeholder = "Cảm ơn vì Feedback của bạn";
+			feedbacks.placeholder = "Cảm ơn vì Feedback của bạn";
+			xhr.send(JSON.stringify(data));
+		}
+	</script>
 </body

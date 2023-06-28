@@ -308,7 +308,7 @@
 		fetch(currentURL + '/Resources')
 		.then(response => response.json())
 		.then(data => {
-		var i = 1;
+		var i = 0;
 		delete data[0].WardID;
 		delete data[0].DesID;
 		delete data[0].TypeID;
@@ -329,8 +329,11 @@
 					var hrefElement = document.createElement("p");
 					hrefElement.innerHTML = `${i}`;
 					hrefElement.setAttribute("onclick",`scrollToSection('${key}Des')`);
+					if(!(i<1)){
+						sideNavBar.appendChild(hrefElement);
+					}
 					i++;
-					sideNavBar.appendChild(hrefElement);
+
 
 				}
 			})

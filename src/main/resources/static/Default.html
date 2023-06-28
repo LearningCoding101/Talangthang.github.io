@@ -123,6 +123,12 @@
 			font-size: 200%;
 			font-family: "danhda" , Consolas !important;
 		}
+		#MoreInfoDes::before {
+			counter-increment: myIndex;
+			content: counter(myIndex) ". Giá";
+			font-size: 200%;
+			font-family: "danhda" , Consolas !important;
+		}
 		#DesPlaceDes > img, #SttSecurityDes > img, #DestinationIDDes, #ReferenceDes, #ImgDes {
 			display: none;
 		}
@@ -130,6 +136,7 @@
 		.main > div {
 			margin-bottom: 5%;
 		}
+
 
 	</style>
 	<title>Ta lang thang</title>
@@ -312,6 +319,8 @@
 		delete data[0].WardID;
 		delete data[0].DesID;
 		delete data[0].TypeID;
+		delete data[0].Reference;
+		delete data[0].DestinationId;
 			Object.keys(data[0]).forEach(key => {
 
 			var sideNavBar = document.getElementById("navSideBar");
@@ -329,7 +338,7 @@
 					var hrefElement = document.createElement("p");
 					hrefElement.innerHTML = `${i}`;
 					hrefElement.setAttribute("onclick",`scrollToSection('${key}Des')`);
-					if(!(i<1)){
+					if(!(i<1 || `${key}Des` == "ImgDes" || `${key}Des` == "DestinationIDDes")){
 						sideNavBar.appendChild(hrefElement);
 					}
 					i++;

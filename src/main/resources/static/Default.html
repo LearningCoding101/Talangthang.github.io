@@ -126,6 +126,11 @@
 		#DesPlaceDes > img, #SttSecurityDes > img, #DestinationIDDes, #ReferenceDes, #ImgDes {
 			display: none;
 		}
+
+		.main > div {
+			margin-bottom: 5%;
+		}
+
 	</style>
 	<title>Ta lang thang</title>
 	<link rel="shortcut icon" href="favicon.ico" />
@@ -231,6 +236,26 @@
 			margin-top: 5%;
 			margin-bottom: 5%;
 		}
+		#navSideBar{
+			position: fixed;
+			top: 20vh;
+			left: 5vw;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			column-gap: 2.5%;
+			transition: all 0.5s ease;
+		}
+		#navSideBar > p:hover {
+			font-weight: bold;
+			color: #3C486B;
+		}
+		.main > div > div{
+			margin-bottom: 2%;
+		}
+		#SttSecurityDes > div > div:before {
+			content: "Độ an toàn: ";
+		}
 	</style>
 
 	<nav class="navbar navbar-light " style="z-index: 1;">
@@ -277,16 +302,19 @@
 
 <body>
 <div id="desContainer">
+	<div id="navSideBar"></div>
 	<script>
 		var currentURL = window.location.href;
 		fetch(currentURL + '/Resources')
 		.then(response => response.json())
 		.then(data => {
-		var i = 0;
+		var i = 1;
 		delete data[0].WardID;
 		delete data[0].DesID;
 		delete data[0].TypeID;
 			Object.keys(data[0]).forEach(key => {
+
+			var sideNavBar = document.getElementById("navSideBar");
 				if(data[0][key] !== null){
 					var appendElement = document.getElementById("desContainer");
 					var current = document.createElement("div");
@@ -297,6 +325,13 @@
 					current.classList.add("main");
 					current.appendChild(testText);
 					appendElement.appendChild(current);
+
+					var hrefElement = document.createElement("p");
+					hrefElement.innerHTML = `${i}`;
+					hrefElement.setAttribute("onclick",`scrollToSection('${key}Des')`);
+					i++;
+					sideNavBar.appendChild(hrefElement);
+
 				}
 			})
 			var bacIMG = document.getElementById("DesNameDes");
@@ -314,6 +349,12 @@
 				}
 			}
 		});
+	</script>
+	<script>
+	  function scrollToSection(sectionId) {
+		var section = document.getElementById(sectionId);
+		section.scrollIntoView({ behavior: 'smooth' });
+	  }
 	</script>
 	<script>
 		fetch(currentURL + "/Picture")
@@ -346,6 +387,7 @@
 
 
 	</script>
+
 </div>
 
 <div id="feedback">

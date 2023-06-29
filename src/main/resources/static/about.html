@@ -198,7 +198,7 @@
 				}
 			}
 			var el = document.getElementById("feedbackBox");
-			var handler = onVisibilityChange(el, function() {
+			setInterval(onVisibilityChange(el, function() {
 				var height = 0;
 				fetch("/feedback")
 				.then(response => response.json())
@@ -226,7 +226,7 @@
 				var edit = document.getElementById("feedback");
 				edit.style.height = `${height * 12 + 100}vh`;
 				})
-			});
+			}),500);
 
 
 			if (window.addEventListener) {

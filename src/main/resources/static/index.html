@@ -234,7 +234,7 @@
     background-color: white;
     padding: 20px;
     border-radius: 10px;">
-			<script>
+				<script>
 			function onVisibilityChange(el, callback) {
 				var old_visible;
 				return function () {
@@ -248,7 +248,7 @@
 				}
 			}
 			var el = document.getElementById("feedbackBox");
-			var handler = onVisibilityChange(el, function() {
+			setInterval(onVisibilityChange(el, function() {
 				var height = 0;
 				fetch("/feedback")
 				.then(response => response.json())
@@ -276,7 +276,7 @@
 				var edit = document.getElementById("feedback");
 				edit.style.height = `${height * 12 + 100}vh`;
 				})
-			});
+			}),500);
 
 
 			if (window.addEventListener) {

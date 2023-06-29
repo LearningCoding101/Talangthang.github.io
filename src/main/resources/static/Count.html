@@ -103,12 +103,15 @@
 	  	<p>Number of Access:</p>
 		<p id="Count"></p>
 	  <script>
-		  fetch("/Count")
-		  .then(response => response.json())
-		  .then(data => {
-		  	var current = document.getElementById("Count");
-		  	current.innerHTML = data;
-		  })
+	  setInterval(display, 1000);
+		  function display(){
+		  	fetch("/Count")
+			  .then(response => response.json())
+			  .then(data => {
+				var current = document.getElementById("Count");
+				current.innerHTML = data;
+			  })
+		  }
 	  </script>
   </div>
 

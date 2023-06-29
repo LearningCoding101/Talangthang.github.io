@@ -40,6 +40,22 @@ public class Counter {
                 String.valueOf(Count.get(0).getTime()+1), "tm");
         return String.valueOf(Count.get(0).getTime());
     }
+    @GetMapping("/CountNumber")
+    public String getCount(){
+        String sql ="Select * from Access where Access = ?" ;
+        List<Acc> Count = jdbcTemplate.query(sql,new Object[]{"tm"}, new RowMapper<Acc>(){
+            ResultSet rs = null;
+            public Acc mapRow(ResultSet rs, int rowNum) throws SQLException {
+                Acc test = new Acc();
+                test.setTime(rs.getInt("Time"));
+                test.setAccess(rs.getString("Access"));
+                // ...
+
+                return test;
+            }
+        });
+        return String.valueOf(Count.get(0).getTime());
+    }
     private class Acc{
         private String Access;
         private Integer Time;

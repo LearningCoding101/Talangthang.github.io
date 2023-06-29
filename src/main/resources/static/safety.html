@@ -325,7 +325,7 @@
 
 					}
 				var edit = document.getElementById("feedback");
-				edit.style.height = `${height * 10 + 80}vh`;
+				edit.style.height = `${height * 12 + 100}vh`;
 				})
 			});
 
@@ -355,6 +355,60 @@
 			</script>
           </div>
       </div>
+      <script>
+		function sendFeedbackToBackend() {
+			var email = document.getElementById('emails').value;
+			var feedback = document.getElementById('feedbacks').value;
+			var emails = document.getElementById('emails');
+			var feedbacks = document.getElementById('feedbacks');
+			var height = 0;
+			var data = {
+				email: email,
+				feedback: feedback
+			};
+			var xhr = new XMLHttpRequest();
+			xhr.open('POST', '/feedback', true);
+			xhr.setRequestHeader('Content-Type', 'application/json');
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState === 4 && xhr.status === 200) {
+					var response = xhr.responseText;
+					if (response == "ok"){
+						fetch("/feedback")
+				.then(response => response.json())
+				.then(data => {
+				var comment = document.getElementById("feedbackComment");
+				comment.innerHTML = "";
+					for(var i = data.length - 1; i >=0; i--){
+						if (data[i].email.length <= 15 || data[i].feedback <= 5){
+							continue;
+						}
+						height++;
+						var current = document.createElement("div");
+						current.classList.add("comment");
+						var email = document.createElement("p");
+						email.classList.add("feedbackEmail");
+						var feedback = document.createElement("p");
+						feedback.classList.add("feedbackFeedback");
+						email.innerHTML = data[i].email;
+						feedback.innerHTML = data[i].feedback;
+						current.appendChild(email);
+						current.appendChild(feedback);
+						comment.appendChild(current);
+
+					}
+				var edit = document.getElementById("feedback");
+				edit.style.height = `${height * 12 + 100}vh`;
+				})
+					}
+				}
+			};
+			emails.value = "";
+			feedbacks.value = "";
+			emails.placeholder = "Cảm ơn vì Feedback của bạn";
+			feedbacks.placeholder = "Cảm ơn vì Feedback của bạn";
+			xhr.send(JSON.stringify(data));
+		}
+	</script>
       <div id="infoBox">
 
           <i class="fa-solid fa-map-location"></i>

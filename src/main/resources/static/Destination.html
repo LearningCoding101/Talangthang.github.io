@@ -278,6 +278,85 @@
 
 			  <button id="quick">Submit</button>
 		  </form>
+		  <div id ="feedbackComment" style="width: 70%;margin-top: 10%;
+    margin-left: 10%;
+    width: 70%;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;">
+			  <script>
+			function onVisibilityChange(el, callback) {
+				var old_visible;
+				return function () {
+					var visible = isElementInViewport(el);
+					if (visible != old_visible) {
+						old_visible = visible;
+						if (typeof callback == 'function') {
+							callback();
+						}
+					}
+				}
+			}
+			var el = document.getElementById("feedbackBox");
+			var handler = onVisibilityChange(el, function() {
+				var height = 0;
+				fetch("/feedback")
+				.then(response => response.json())
+				.then(data => {
+				var comment = document.getElementById("feedbackComment");
+				comment.innerHTML = "";
+					for(var i = data.length - 1; i >=0; i--){
+						if (data[i].email.length <= 15 || data[i].feedback <= 5){
+							continue;
+						}
+						height++;
+						var current = document.createElement("div");
+						current.classList.add("comment");
+						var email = document.createElement("p");
+						email.classList.add("feedbackEmail");
+						var feedback = document.createElement("p");
+						feedback.classList.add("feedbackFeedback");
+						email.innerHTML = data[i].email;
+						feedback.innerHTML = data[i].feedback;
+						current.appendChild(email);
+						current.appendChild(feedback);
+						comment.appendChild(current);
+
+					}
+				var edit = document.getElementById("feedback");
+				edit.style.height = `${height * 10 + 80}vh`;
+				})
+			});
+
+
+			if (window.addEventListener) {
+				addEventListener('DOMContentLoaded', handler, false);
+				addEventListener('load', handler, false);
+				addEventListener('scroll', handler, false);
+				addEventListener('resize', handler, false);
+			} else if (window.attachEvent)  {
+				attachEvent('onDOMContentLoaded', handler);
+				attachEvent('onload', handler);
+				attachEvent('onscroll', handler);
+				attachEvent('onresize', handler);
+			}
+			function isElementInViewport(el) {
+			var rect = el.getBoundingClientRect();
+
+			return (
+				rect.top >= 0 &&
+				rect.left >= 0 &&
+				rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+				rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+			);
+		}
+
+			</script>
+		  </div>
 	  </div>
 	  <div id="infoBox">
 
@@ -290,12 +369,13 @@
 		  <div>https://www.facebook.com/talangthang2023</div>
 	  </div>
   </div>
-<script>
+  <script>
 		function sendFeedbackToBackend() {
 			var email = document.getElementById('emails').value;
 			var feedback = document.getElementById('feedbacks').value;
 			var emails = document.getElementById('emails');
 			var feedbacks = document.getElementById('feedbacks');
+			var height = 0;
 			var data = {
 				email: email,
 				feedback: feedback
@@ -305,8 +385,35 @@
 			xhr.setRequestHeader('Content-Type', 'application/json');
 			xhr.onreadystatechange = function() {
 				if (xhr.readyState === 4 && xhr.status === 200) {
-					var response = JSON.parse(xhr.responseText);
-					// Handle the response from the backend
+					var response = xhr.responseText;
+					if (response == "ok"){
+						fetch("/feedback")
+				.then(response => response.json())
+				.then(data => {
+				var comment = document.getElementById("feedbackComment");
+				comment.innerHTML = "";
+					for(var i = data.length - 1; i >=0; i--){
+						if (data[i].email.length <= 15 || data[i].feedback <= 5){
+							continue;
+						}
+						height++;
+						var current = document.createElement("div");
+						current.classList.add("comment");
+						var email = document.createElement("p");
+						email.classList.add("feedbackEmail");
+						var feedback = document.createElement("p");
+						feedback.classList.add("feedbackFeedback");
+						email.innerHTML = data[i].email;
+						feedback.innerHTML = data[i].feedback;
+						current.appendChild(email);
+						current.appendChild(feedback);
+						comment.appendChild(current);
+
+					}
+				var edit = document.getElementById("feedback");
+				edit.style.height = `${height * 10 + 80}vh`;
+				})
+					}
 				}
 			};
 			emails.value = "";

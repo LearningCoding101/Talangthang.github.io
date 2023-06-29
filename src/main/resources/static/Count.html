@@ -53,6 +53,10 @@
 		#desContainer{
 			height: 100vh;
 			width: 100vw;
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+			align-items: center;
 			animation: rainbow-bg 2.5s linear;
 		animation-iteration-count: infinite;
 		}
@@ -96,12 +100,14 @@
 }
 
 	</style>
+	  	<p>Number of Access:</p>
 		<p id="Count"></p>
 	  <script>
 		  fetch("/Count")
 		  .then(response => response.json())
 		  .then(data => {
-		  	Console.log("data");
+		  	var current = document.getElementById("Count");
+		  	current.innerHTML = data;
 		  })
 	  </script>
   </div>

@@ -77,5 +77,8 @@ public class ProjectApplication {
 	public Resource getCSS(){
 		return new ClassPathResource("static/style.css");
 	}
-
+	@GetMapping("/CountTime")
+	public Resource getCount(){
+		return new ClassPathResource("static/Count.html");
+	}
 }

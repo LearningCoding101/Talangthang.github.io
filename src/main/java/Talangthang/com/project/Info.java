@@ -31,4 +31,36 @@ public class Info {
         String sql = "SELECT * FROM Picture WHERE Picture.DestinationID = ?";
         return jdbcTemplate.query(sql, new PictureRowMapper(), name);
     }
+    @GetMapping("/ComboResources")
+    public List<Map<String, Object>> getComboResource(){
+        String sql = "SELECT ComboProvince.ID, ComboProvince.DesID, ComboProvince.ComboID, ComboProvince.DesName, Picture.*" +
+                "FROM ComboProvince " +
+                "JOIN (" +
+                "    SELECT DestinationID, Img AS Img," +
+                "    ROW_NUMBER() OVER (PARTITION BY DestinationID ORDER BY Img) AS RowNum " +
+                "    FROM Picture " +
+                ") AS Picture ON ComboProvince.DesID = Picture.DestinationID AND Picture.RowNum = 3 " +
+                "GROUP BY ComboProvince.ID, ComboProvince.DesID, ComboProvince.ComboID, ComboProvince.DesName, Picture.Img;";
+
+        return jdbcTemplate.queryForList(sql);
+    }
+    @GetMapping("/ComboDetail")
+    public List<Map<String,Object>> getComboDetail(){
+        String sql = "Select * from Combo";
+        return jdbcTemplate.queryForList(sql);
+    }
+    @GetMapping("/Combo/{id}/Resources")
+    public List<Map<String, Object>> getComboResource(@PathVariable String id){
+        String sql = "SELECT ComboProvince.*, Picture.* " +
+                "FROM ComboProvince " +
+                "JOIN Picture ON ComboProvince.DesID = Picture.DestinationID " +
+                "WHERE ComboProvince.DesID = ? " +
+                "LIMIT 1;";
+        return jdbcTemplate.queryForList(sql, id);
+    }
+    @GetMapping("/Combo/{id}/Picture")
+    public List<Picture> ComboPicture(@PathVariable String id) {
+        String sql = "SELECT * FROM Picture WHERE Picture.DestinationID = ?";
+        return jdbcTemplate.query(sql, new PictureRowMapper(), id);
+    }
 }

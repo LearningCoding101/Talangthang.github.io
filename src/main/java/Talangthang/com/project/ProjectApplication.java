@@ -81,4 +81,12 @@ public class ProjectApplication {
 	public Resource getCount(){
 		return new ClassPathResource("static/Count.html");
 	}
+	@GetMapping("/Combo")
+	public Resource getCombo(){
+		return new ClassPathResource("static/Combo.html");
+	}
+	@RequestMapping("/Combo/{id}")
+	public Resource getComboView(@PathVariable String id){
+		return new ClassPathResource("static/ComboInfo.html");
+	}
 }

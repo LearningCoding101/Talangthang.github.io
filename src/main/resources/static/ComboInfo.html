@@ -54,7 +54,7 @@
 		#MoreInfoDes > div,
 		#OtherDes > div,
 		#ReferenceDes > div,
-		 {
+		#DetailDes > div {
   			padding-left: 10%;
 }
 
@@ -127,6 +127,12 @@
 		#MoreInfoDes::before {
 			counter-increment: myIndex;
 			content: counter(myIndex) ". Giá";
+			font-size: 200%;
+			font-family: "danhda" , Consolas !important;
+		}
+		#DetailDes::before {
+			counter-increment: myIndex;
+			content: counter(myIndex) ". Thông tin";
 			font-size: 200%;
 			font-family: "danhda" , Consolas !important;
 		}
@@ -317,8 +323,9 @@
 		.then(response => response.json())
 		.then(data => {
 		var i = 1;
-		delete data[0].WardID;
+		delete data[0].ComboID;
 		delete data[0].DesID;
+		delete data[0].ID;
 		delete data[0].TypeID;
 		delete data[0].Reference;
 		delete data[0].DestinationId;
@@ -339,10 +346,11 @@
 					var hrefElement = document.createElement("p");
 					hrefElement.innerHTML = `${i}`;
 					hrefElement.setAttribute("onclick",`scrollToSection('${key}Des')`);
-					if(!(i<0 || `${key}Des` == "ImgDes" || `${key}Des` == "DestinationIDDes"|| `${key}Des` == "DesNameDes")){
+					if(!(i<0 || `${key}Des` == "ImgDes" || `${key}Des` == "DestinationIDDes" || `${key}Des` == "SttSecurityDes"|| `${key}Des` == "DesNameDes" )){
 						sideNavBar.appendChild(hrefElement);
 						i++;
 					}
+
 
 
 				}
@@ -370,29 +378,30 @@
 	  }
 	</script>
 	<script>
-
 		window.addEventListener('load', () => {
-				  setTimeout(() => {
-					fetch(currentURL + "/Picture")
-					  .then(response => response.json())
-					  .then(data => {
-						const parentElements = document.querySelectorAll(".main");
-						let j = 0;
-						for (let i = 0; i < parentElements.length; i++) {
-						  if (i < 1) {
-							continue;
-						  }
-						  if (data[j] && data[j].img) {
-							const picElement = document.createElement('img');
-							picElement.src = data[j].img;
-							picElement.classList.add("image");
-							parentElements[i].appendChild(picElement);
-						  }
-						  j = (j + 1) % data.length;
-						}
-					  });
-				  }, 1000);
-				});
+		  setTimeout(() => {
+			fetch(currentURL + "/Picture")
+			  .then(response => response.json())
+			  .then(data => {
+				const parentElements = document.querySelectorAll(".main");
+				let j = 0;
+				for (let i = 0; i < parentElements.length; i++) {
+				  if (i < 2) {
+					continue;
+				  }
+				  if (data[j] && data[j].img) {
+					const picElement = document.createElement('img');
+					picElement.src = data[j].img;
+					picElement.classList.add("image");
+					parentElements[i].appendChild(picElement);
+				  }
+				  j = (j + 1) % data.length;
+				}
+			  });
+		  }, 1000);
+		});
+
+
 	</script>
 	<script>
 		const parentElements = document.querySelectorAll(".main > div > div");

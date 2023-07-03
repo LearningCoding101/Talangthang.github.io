@@ -270,6 +270,26 @@
 		#SttSecurityDes > div > div:before {
 			content: "Độ an toàn: ";
 		}
+		#img360Container{
+			display: flex;
+			margin-left: 0 !important;
+			justify-content: center;
+			align-items: center;
+			height: 80vh;
+			width: 100%;
+			margin-top: 10%;
+			margin-bottom: 10%;
+			margin-left: 0px !important;
+			padding-left: 0px !important;
+		}
+
+		#img360Container > iframe {
+			border: 5px solid #3c486b !important;
+			height: 100% !important;
+			width: 100% !important;
+			margin-left: 0px !important;
+			padding-left: 0px !important;
+		}
 	</style>
 
 	<nav class="navbar navbar-light " style="z-index: 1;">
@@ -362,6 +382,7 @@
 			var buffer = document.createElement("div");
 			buffer.style.height = "70vh";
 			buffer.style.width = "100vw";
+			buffer.setAttribute("id", "buffer");
 			bacIMG.insertAdjacentElement("afterend", buffer);
 			const parentElements = document.querySelectorAll(".main > div > div");
 		for(var j = 0; j <parentElements.length; j++){
@@ -403,19 +424,27 @@
 
 
 	</script>
-	<script>
-		const parentElements = document.querySelectorAll(".main > div > div");
-		for(var j = 0; j <parentElements.length; j++){
-				if(parentElements[j].textContent.trim().length <= 20){
-					parentElements[j].setAttribute("style", "margin-left: -5% !important;");
-				}
-			}
 
+	<script>
+		function setImg() {
+		  fetch(currentURL + "/Img360")
+			.then(Response => Response.json())
+			.then(data => {
+			  var current = document.getElementById("img360Container");
+			  current.innerHTML = data[0]["img"];
+			  if(data[0]["img"] == null){
+			  	current.style.display = "none";
+			  }
+			  var append = document.querySelector("#buffer");
+			  append.insertAdjacentElement("afterend", current);
+			});
+		}
+
+		setTimeout(setImg, 1000);
 
 	</script>
-
 </div>
-
+<div id ="img360Container"></div>
 <div id="feedback">
 	<div id="feedbackBox">
 		<form class="form" style="position: relative" onsubmit="event.preventDefault(); sendFeedbackToBackend();">

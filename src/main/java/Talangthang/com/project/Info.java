@@ -63,4 +63,16 @@ public class Info {
         String sql = "SELECT * FROM Picture WHERE Picture.DestinationID = ?";
         return jdbcTemplate.query(sql, new PictureRowMapper(), id);
     }
+    @GetMapping("/Combo/{id}/Img360")
+    public List<Picture> ComboPano(@PathVariable String id){
+        String sql = "Select * From img360 where img360.ID = ?";
+        return jdbcTemplate.query(sql, new ImgMapper(), id);
+
+    }
+    @GetMapping("/Information/{id}/Img360")
+    public List<Picture> InfoPano(@PathVariable String id){
+        String sql = "Select * From img360 where img360.ID = ?";
+        return jdbcTemplate.query(sql, new ImgMapper(), id);
+
+    }
 }

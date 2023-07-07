@@ -56,7 +56,9 @@
   src: url("font3.ttf") format("truetype");
 }
 #ig {
+  text-wrap: nowrap;
   opacity: 1 !important;
+  font-size: 90% ! important;
 }
 #ig a {
   margin-left: auto;

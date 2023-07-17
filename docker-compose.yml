@@ -8,6 +8,6 @@ services:
       - 8080:8080
     environment:
       - spring.datasource.url=jdbc:mysql://aws.connect.psdb.cloud/talangthang?sslMode=VERIFY_IDENTITY
-      - spring.datasource.username=wbm7ptua6kbwjh9hbedk
-      - spring.datasource.password=pscale_pw_jWXLCHGou4CBhSquoTqFc5hZDJgvJun6PN9n4H5pqAY
+      - spring.datasource.username=ft62aps73nljje47bi9s
+      - spring.datasource.password=pscale_pw_gFUC1cR0DWTDcL6JhNfAhRiVEfQpeGF1e24rYVzNEoJ
       - spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
